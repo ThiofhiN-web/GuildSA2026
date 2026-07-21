@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <title>Buildathon Attendance Register — GUILD SA</title>
 
   <!-- Font Awesome 6 (icons) -->
@@ -915,6 +915,58 @@
       width: 100%;
     }
 
+    .input-eye-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .input-eye-wrap input {
+      width: 100%;
+      padding-right: 42px;
+    }
+
+    .input-eye-wrap .pass-toggle {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 8px;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      transition: color .15s ease;
+    }
+
+    .input-eye-wrap .pass-toggle:hover {
+      color: var(--accent);
+    }
+
+    .auth-switch {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .auth-switch a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .auth-switch a:hover {
+      text-decoration: underline;
+    }
+
     .login-error {
       color: var(--absent);
       font-size: 13px;
@@ -1398,13 +1450,57 @@
           <input type="text" id="loginUser" autocomplete="username" placeholder="admin">
         </label>
         <label for="loginPass">Password
-          <input type="password" id="loginPass" autocomplete="current-password" placeholder="••••••••">
+          <div class="input-eye-wrap">
+            <input type="password" id="loginPass" autocomplete="current-password" placeholder="••••••••">
+            <button type="button" class="pass-toggle" data-for="loginPass" title="Toggle password visibility"><i class="fa-solid fa-eye"></i></button>
+          </div>
         </label>
       </div>
       <div class="login-error" id="loginError" role="alert"></div>
       <button type="submit" class="btn btn-primary" title="Sign in to the register" data-tip="Sign in">
-        <i class="fa-solid fa-right-to-bracket"></i> Sign in</button>
-      <p class="login-note">Local demo access for this device only — nothing is sent to a server.</p>
+        <i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+      <div class="auth-switch">
+        Don't have an account? <a id="showSignupBtn" href="#">Create Account</a>
+      </div>
+      <p class="login-note">Default credentials: <strong>admin</strong> / <strong>guild2026</strong></p>
+    </form>
+
+    <form class="login-card" id="signupForm" autocomplete="off" hidden>
+      <div class="login-brand">
+        <span class="brand-plate">
+          <span style="font-size:18px;font-weight:800;letter-spacing:-.01em;color:var(--text);">GUILD <small style="display:inline;font-size:12px;color:var(--accent);letter-spacing:.14em;">SA</small></span>
+        </span>
+      </div>
+      <h2>Create Admin Account</h2>
+      <p class="login-sub">Register a new admin account for GUILD SA</p>
+      <div class="login-fields">
+        <label for="signupUser">Username *
+          <input type="text" id="signupUser" placeholder="e.g. johndoe" required autocomplete="username">
+        </label>
+        <label for="signupEmail">Email Address *
+          <input type="email" id="signupEmail" placeholder="admin@guildsa.com" required autocomplete="email">
+        </label>
+        <label for="signupDisplayName">Display Name (optional)
+          <input type="text" id="signupDisplayName" placeholder="e.g. John Doe" autocomplete="name">
+        </label>
+        <label for="signupPass">Password *
+          <div class="input-eye-wrap">
+            <input type="password" id="signupPass" placeholder="At least 6 characters" required autocomplete="new-password">
+            <button type="button" class="pass-toggle" data-for="signupPass" title="Toggle password visibility"><i class="fa-solid fa-eye"></i></button>
+          </div>
+        </label>
+        <label for="signupConfirmPass">Confirm Password *
+          <div class="input-eye-wrap">
+            <input type="password" id="signupConfirmPass" placeholder="Repeat password" required autocomplete="new-password">
+            <button type="button" class="pass-toggle" data-for="signupConfirmPass" title="Toggle password visibility"><i class="fa-solid fa-eye"></i></button>
+          </div>
+        </label>
+      </div>
+      <div id="signupError" class="login-error" role="alert"></div>
+      <button type="submit" class="btn btn-primary" title="Create your admin account"><i class="fa-solid fa-user-plus"></i> Create Account</button>
+      <div class="auth-switch">
+        Already have an account? <a id="showLoginBtn" href="#">Sign In</a>
+      </div>
     </form>
   </div>
 
